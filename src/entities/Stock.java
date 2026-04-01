@@ -11,6 +11,8 @@ public class Stock {
     public void addProduct() {
         System.out.println("Enter product data:");
 
+        this.sc.nextLine();
+
         System.out.print("Name: ");
         String productName = this.sc.nextLine();
 
@@ -22,7 +24,6 @@ public class Stock {
 
         this.product = new Product(productName, productPrice, productQuantity);
 
-        sc.close();
     }
 
     public void addProductQuantity() {
@@ -50,8 +51,14 @@ public class Stock {
     }
 
     public void listProduct() {
+        if (this.product == null) {
+            System.out.println("Product not registered.");
+            return;
+        }
+
         System.out.println("Name: " + this.product.name);
         System.out.println("Quantity: " + this.product.quantity);
         System.out.println("Price: " + this.product.price);
+
     }
 }
