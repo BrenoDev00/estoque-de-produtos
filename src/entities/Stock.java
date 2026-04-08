@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Stock {
     private Product product;
-    private Scanner sc = new Scanner(System.in);
+    private final static Scanner SC = new Scanner(System.in);
 
     private boolean isProductNotRegistered() {
         if (this.product == null) {
@@ -18,16 +18,16 @@ public class Stock {
     public void addProduct() {
         System.out.println("Enter product data:");
 
-        this.sc.nextLine();
+        SC.nextLine();
 
         System.out.print("Name: ");
-        String productName = this.sc.nextLine();
+        String productName = SC.nextLine();
 
         System.out.print("Price: ");
-        double productPrice = this.sc.nextDouble();
+        double productPrice = SC.nextDouble();
 
         System.out.print("Quantity in stock: ");
-        int productQuantity = this.sc.nextInt();
+        int productQuantity = SC.nextInt();
 
         this.product = new Product(productName, productPrice, productQuantity);
 
@@ -37,36 +37,26 @@ public class Stock {
         if (this.isProductNotRegistered()) return;
 
         System.out.print("Enter the amount to be added: ");
-        int newQuantity = this.sc.nextInt();
+        int newQuantity = SC.nextInt();
 
-        if (newQuantity < 1) {
-            System.out.println("Invalid value");
-            return;
-        }
-
-        this.product.quantity += newQuantity;
+        this.product.addQuantity(newQuantity);
     }
 
     public void removeProductQuantity() {
         if (this.isProductNotRegistered()) return;
 
         System.out.print("Enter the amount to be removed: ");
-        int newQuantity = this.sc.nextInt();
+        int newQuantity = SC.nextInt();
 
-        if (newQuantity > this.product.quantity) {
-            System.out.println("Invalid value");
-            return;
-        }
-
-        this.product.quantity -= newQuantity;
+        this.product.removeQuantity(newQuantity);
     }
 
     public void listProduct() {
         if (this.isProductNotRegistered()) return;
 
-        System.out.println("Name: " + this.product.name);
-        System.out.println("Quantity: " + this.product.quantity);
-        System.out.println("Price: " + this.product.price);
+        System.out.println("Name: " + this.product.getName());
+        System.out.println("Quantity: " + this.product.getQuantity());
+        System.out.println("Price: " + this.product.getPrice());
 
     }
 }
