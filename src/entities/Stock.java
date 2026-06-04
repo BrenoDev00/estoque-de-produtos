@@ -1,8 +1,10 @@
 package entities;
 
+import interfaces.IStock;
+
 import java.util.Scanner;
 
-public class Stock {
+public class Stock implements IStock {
     private Product product;
     private final static Scanner SC = new Scanner(System.in);
 
@@ -37,18 +39,18 @@ public class Stock {
         if (this.isProductNotRegistered()) return;
 
         System.out.print("Enter the amount to be added: ");
-        int newQuantity = SC.nextInt();
+        int quantityToAdd = SC.nextInt();
 
-        this.product.addQuantity(newQuantity);
+        this.product.addQuantity(quantityToAdd);
     }
 
     public void removeProductQuantity() {
         if (this.isProductNotRegistered()) return;
 
         System.out.print("Enter the amount to be removed: ");
-        int newQuantity = SC.nextInt();
+        int quantityToRemove = SC.nextInt();
 
-        this.product.removeQuantity(newQuantity);
+        this.product.removeQuantity(quantityToRemove);
     }
 
     public void listProduct() {

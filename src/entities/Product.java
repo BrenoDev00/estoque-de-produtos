@@ -1,11 +1,13 @@
 package entities;
 
-public class Product {
-    private String name;
-    private double price;
-    private int quantity;
+import interfaces.IProduct;
 
-    public Product(String name, double price, int quantity) {
+public class Product implements IProduct {
+    private String name;
+    private Double price;
+    private Integer quantity;
+
+    public Product(String name, Double price, Integer quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -15,29 +17,29 @@ public class Product {
         return this.name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return this.price;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return this.quantity;
     }
 
-    public void addQuantity(int newQuantity) {
-        if (newQuantity < 1) {
+    public void addQuantity(int quantityToAdd) {
+        if (quantityToAdd < 1) {
             System.out.println("Invalid value");
             return;
         }
 
-        this.quantity += newQuantity;
+        this.quantity += quantityToAdd;
     }
 
-    public void removeQuantity(int newQuantity) {
-        if (newQuantity > this.quantity || newQuantity < 1) {
+    public void removeQuantity(int quantityToRemove) {
+        if (quantityToRemove > this.quantity || quantityToRemove < 1) {
             System.out.println("Invalid value");
             return;
         }
 
-        this.quantity -= newQuantity;
+        this.quantity -= quantityToRemove;
     }
 }
